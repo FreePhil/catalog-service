@@ -1,0 +1,8 @@
+server:
+  port: 9002
+  tomcat:
+    connection-timeout: 60s
+    keep-alive-timeout: 60s
+    threads:
+      max: 50
+      min-spare: 5
