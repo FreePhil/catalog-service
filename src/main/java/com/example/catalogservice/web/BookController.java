@@ -2,6 +2,7 @@ package com.example.catalogservice.web;
 
 import com.example.catalogservice.domain.Book;
 import com.example.catalogservice.domain.BookService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 public class BookController {
     private final BookService bookService;
 
-    public BookController(BookService bookServic) {
-        this.bookService = bookServic;
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @GetMapping
@@ -26,7 +27,7 @@ public class BookController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Book post(@RequestBody Book book) throws Exception {
+    public Book post(@Valid @RequestBody Book book) throws Exception {
         return bookService.addBookToCatalog(book);
     }
 
@@ -37,7 +38,7 @@ public class BookController {
     }
 
     @PutMapping("{isbn}")
-    public Book put(@PathVariable String isbn, @RequestBody Book book) {
+    public Book put(@Valid @PathVariable String isbn, @RequestBody Book book) {
         return bookService.editBookDetails(isbn, book);
     }
 }
