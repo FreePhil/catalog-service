@@ -10,7 +10,7 @@ jobs:
       security-events: write
     steps:
       - name: Checkout source code
-        uses: action/cehckout@v3
+        uses: action/checkout@v3
 
       - name: Setup JDK
         uses: action/setup-java@v3
